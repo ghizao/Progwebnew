@@ -1,0 +1,84 @@
+<h1>Lista de Negociações</h1>
+
+<div class="new-item-button-container">
+  <a mat-raised-button color="primary" [routerLink]="['/negociacao/novo']">
+    <mat-icon>add_box</mat-icon>Cadastrar nova Negociação
+  </a>
+</div>
+
+<table mat-table [dataSource]="negociacoes" class="mat-elevation-z8">
+
+    <!-- Nome Column -->
+  <ng-container matColumnDef="num_negociacao">
+    <th mat-header-cell *matHeaderCellDef> N° Negociação </th>
+    <td mat-cell *matCellDef="let negociacao"> {{negociacao.num_negociacao}} </td>
+  </ng-container>
+
+  <!-- Nome Column -->
+  <ng-container matColumnDef="data_negociacao">
+    <th mat-header-cell *matHeaderCellDef> Data da Negociação </th>
+    <td mat-cell *matCellDef="let negociacao"> {{negociacao.data_negociacao | date:'dd/MM/yyyy'}} </td>
+  </ng-container>
+
+  <!-- Especialidade Column -->
+  <ng-container matColumnDef="forma_pagamento">
+    <th mat-header-cell *matHeaderCellDef> Forma de Pagamento </th>
+    <td mat-cell *matCellDef="let negociacao"> {{negociacao.forma_pagamento}} </td>
+  </ng-container>
+
+  <!-- cpf Column -->
+  <ng-container matColumnDef="data_pagamento">
+    <th mat-header-cell *matHeaderCellDef> Data de Pagamento </th>
+    <td mat-cell *matCellDef="let negociacao"> {{negociacao.data_pagamento | date:'dd/MM/yyyy'}} </td>
+  </ng-container>
+
+  <!-- Especialidade Column -->
+  <ng-container matColumnDef="valor_negociado">
+    <th mat-header-cell *matHeaderCellDef> Valor Negociado </th>
+    <td mat-cell *matCellDef="let negociacao"> {{negociacao.valor_negociado}} </td>
+  </ng-container>
+
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="contratante">
+    <th mat-header-cell *matHeaderCellDef> Contratante </th>
+    <td mat-cell *matCellDef="let negociacao"> {{negociacao.contratante?.nome}} </td>
+  </ng-container>
+
+  <!-- email Column -->
+  <ng-container matColumnDef="profissional">
+    <th mat-header-cell *matHeaderCellDef> Profissional </th>
+    <td mat-cell *matCellDef="let negociacao"> {{negociacao.profissional?.nome}} </td>
+  </ng-container> 
+
+  <!-- email Column -->
+  <ng-container matColumnDef="demanda">
+    <th mat-header-cell *matHeaderCellDef> Demanda </th>
+    <td mat-cell *matCellDef="let negociacao"> {{negociacao.demanda?.descricao}} </td>
+  </ng-container>
+
+  <!-- Exclir Editar -->
+  <ng-container matColumnDef="editar">
+    <th mat-header-cell *matHeaderCellDef> Editar </th>
+    <td mat-cell *matCellDef="let negociacao">
+      <a mat-raised-button color="primary" title="Editar" [routerLink]="['/negociacao', negociacao._id]">
+        <mat-icon>edit</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <!-- Exclir Column -->
+  <ng-container matColumnDef="excluir">
+    <th mat-header-cell *matHeaderCellDef> Excluir </th>
+    <td mat-cell *matCellDef="let negociacao">
+      <button mat-raised-button color="warn" title="Excluir" (click)="excluirItem(negociacao._id)">
+        <mat-icon>delete_forever</mat-icon>
+      </button> </td>
+  </ng-container>
+
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

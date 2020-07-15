@@ -1,0 +1,104 @@
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+   <mat-form-field>
+      <mat-label>N° Negociaçao</mat-label>
+      <input matInput [(ngModel)]="negociacao.num_negociacao" name="nome" readonly>
+   </mat-form-field>
+
+   <mat-form-field>
+
+   <mat-select placeholder="Selecione o contratante" required [(ngModel)]="negociacao.contratante" name="contratante">
+
+   <!--
+            No <mat-option> colocamos a entidade relacionada (aquela cujos dados
+            serão listados).
+            No atributo [value], será colocado sempre o _id da entidade relacionada.
+            Entre {{ }}, colocamos o que queremos que o usuário veja na listagem.
+            Quando o usuário fizer a seleção, o _id da entidade relacionada será
+            atribuído ao atributo indicado no ngModel da entidade de destino.
+         -->
+         <mat-option *ngFor="let contratante of contratantes" [value]="contratante._id">
+            {{ contratante.nome }}
+         </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+   <mat-select placeholder="Selecione o Profissional" required [(ngModel)]="negociacao.profissional" name="profissional">
+
+    <!--
+             No <mat-option> colocamos a entidade relacionada (aquela cujos dados
+             serão listados).
+             No atributo [value], será colocado sempre o _id da entidade relacionada.
+             Entre {{ }}, colocamos o que queremos que o usuário veja na listagem.
+             Quando o usuário fizer a seleção, o _id da entidade relacionada será
+             atribuído ao atributo indicado no ngModel da entidade de destino.
+          -->
+          <mat-option *ngFor="let profissional of profissionais" [value]="profissional._id">
+             {{ profissional.nome }}
+          </mat-option>
+       </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+       <mat-select placeholder="Selecione a Demanda" required [(ngModel)]="negociacao.demanda" name="demanda">
+
+        <!--
+                 No <mat-option> colocamos a entidade relacionada (aquela cujos dados
+                 serão listados).
+                 No atributo [value], será colocado sempre o _id da entidade relacionada.
+                 Entre {{ }}, colocamos o que queremos que o usuário veja na listagem.
+                 Quando o usuário fizer a seleção, o _id da entidade relacionada será
+                 atribuído ao atributo indicado no ngModel da entidade de destino.
+              -->
+              <mat-option *ngFor="let demanda of demandas" [value]="demanda._id">
+                 {{ demanda.descricao }}
+              </mat-option>
+           </mat-select>        
+    </mat-form-field>
+
+
+
+
+   <mat-form-field>
+      <mat-label>CPF</mat-label>
+      <input matInput [(ngModel)]="negociacao.cpf" name="cpf" required placeholder="Informe o CPF do negociacao" mask="000.000.000-00">
+   </mat-form-field>
+
+   <mat-form-field>
+    <mat-label>Cédula de Identidade</mat-label>
+    <input matInput [(ngModel)]="negociacao.cedula_identidade" name="cedula_identidade" required placeholder="Informe a cedula_identidade do negociacao">
+ </mat-form-field>
+ 
+   <mat-form-field>
+      <mat-label>Endereço</mat-label>
+      <input matInput [(ngModel)]="negociacao.endereco" name="endereco" required placeholder="Informe o endereco do negociacao">
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label>Telefone</mat-label>
+      <mat-icon matPrefix>contact_phone</mat-icon>
+      <input matInput [(ngModel)]="negociacao.telefone" name="telefone" required placeholder="Informe o telefone do profissioanl">
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label>E-mail</mat-label>
+      <mat-icon matPrefix>contact_mail</mat-icon>
+      <input type="email" matInput [(ngModel)]="negociacao.email" name="email" required placeholder="Informe o email do negociacao">
+   </mat-form-field>
+
+   <mat-toolbar class="form-buttons">
+      <mat-toolbar-row>
+         <button mat-raised-button type="submit" color="primary">
+            Salvar
+         </button>
+         <button mat-raised-button type="button" (click)="voltar(f)">
+            Voltar
+         </button>
+      </mat-toolbar-row>
+   </mat-toolbar>
+
+</form>
+

@@ -3,21 +3,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
-export interface Profissional {
-  nome: string
-  especialidade: string
-  cpf: string
-  cedula_identidade: string
-  endereco: string
-  telefone: string
-  email: string
-}
+
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ProfissionalService {
+export class ContratanteService {
 
   //Injeção de Dependencis: em vez de criarmos
   //normalmente as Dependencoas necessárias
@@ -25,7 +17,7 @@ export class ProfissionalService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUri : string = env.apiBaseUri + 'profissional'
+  private apiUri : string = env.apiBaseUri + 'contratante'
 
   listar() {
       return this.http.get(this.apiUri).toPromise()
@@ -45,7 +37,7 @@ export class ProfissionalService {
   }
 
 obterUm(id: string) {
-  return this.http.get(this.apiUri + '/' + id).toPromise()
+  return this.http.get(this.apiUri + '/' + id).toPromise
 }
 
 

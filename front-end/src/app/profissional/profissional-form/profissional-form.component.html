@@ -1,1 +1,54 @@
-<p>profissional-form works!</p>
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+   <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="profissional.nome" name="nome" required placeholder="Informe o nome do profissional">
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label>Especialidade</mat-label>
+      <input matInput [(ngModel)]="profissional.especialidade" name="especialidade" required placeholder="Informe a especialidade do profissional">
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label>CPF</mat-label>
+      <input matInput [(ngModel)]="profissional.cpf" name="cpf" required placeholder="Informe o CPF do profissional" mask="000.000.000-00">
+   </mat-form-field>
+
+   <mat-form-field>
+    <mat-label>Cédula de Identidade</mat-label>
+    <input matInput [(ngModel)]="profissional.cedula_identidade" name="cedula_identidade" required placeholder="Informe a cedula_identidade do profissional">
+ </mat-form-field>
+ 
+   <mat-form-field>
+      <mat-label>Endereço</mat-label>
+      <input matInput [(ngModel)]="profissional.endereco" name="endereco" required placeholder="Informe o endereco do profissional">
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label>Telefone</mat-label>
+      <mat-icon matPrefix>contact_phone</mat-icon>
+      <input matInput [(ngModel)]="profissional.telefone" name="telefone" required placeholder="Informe o telefone do profissioanl">
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label>E-mail</mat-label>
+      <mat-icon matPrefix>contact_mail</mat-icon>
+      <input type="email" matInput [(ngModel)]="profissional.email" name="email" required placeholder="Informe o email do profissional">
+   </mat-form-field>
+
+   <mat-toolbar class="form-buttons">
+      <mat-toolbar-row>
+         <button mat-raised-button type="submit" color="primary">
+            Salvar
+         </button>
+         <button mat-raised-button type="button" (click)="voltar(f)">
+            Voltar
+         </button>
+      </mat-toolbar-row>
+   </mat-toolbar>
+
+</form>
+

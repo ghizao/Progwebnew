@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProfissionalService } from 'src/app/profissional/profissional.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -18,10 +18,26 @@ export class ProfissionalFormComponent implements OnInit {
   constructor(
     private profissionalSrv : ProfissionalService,
     private snackBar : MatSnackBar,
-    private router : Router
+    private router : Router,
+    private actRoute: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    //capturando os parametos da rota
+    let params = this.actRoute.snapshot.params
+
+    //existe um parâmetro chamado: id?
+    if(params['id']) {
+      //é caso de atualçização, É necessário consultar o back-end
+      //para recuperar o registro e coloca-lo para edição
+      try {
+        this.profissional = await this.profissionalSrv.obterUm(params['id'])
+        this.title = 'Atualizando Profissional'
+      }
+      catch(erro) {
+        this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})
+      }
+    }
   }
 
   voltar(x) {

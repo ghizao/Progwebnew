@@ -26,10 +26,7 @@ const esquema = mongoose.Schema({
    },
    data_nascimento: {
       type: Date
-   },
-   especialidade: {
-      type: String,
-      required: true
+  
    }
 })
 

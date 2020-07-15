@@ -24,8 +24,11 @@ controller.listar = async (req, res) => {
       try {
          // find(), sem parâmetros, retorna todos
          // populate(): traz os dados de uma entidade relacionada
-         const lista = await Negociacao.find().populate('contratante')
-
+         const lista = await Negociacao.find()
+         .populate('contratante')
+         .populate('profissional')
+         .populate('demanda');
+         
          // Limitando quais campos são trazidos na pesquisa
          // const lista = await Venda.find({}, 'num_venda cliente').populate('cliente')
 
